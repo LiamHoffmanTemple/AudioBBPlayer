@@ -2,6 +2,8 @@ package edu.temple.AudioBBPlayer
 
 import android.app.Activity
 import android.content.Intent
+import android.app.DownloadManager
+
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
@@ -15,7 +17,9 @@ import android.widget.Button
 import androidx.activity.result.contract.ActivityResultContracts
 import android.content.ComponentName;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences
 import android.os.*
+import android.util.SparseArray
 import edu.temple.audlibplayer.PlayerService
 import android.widget.SeekBar
 
@@ -30,6 +34,10 @@ class MainActivity : AppCompatActivity(), BookSelectedInterface, PlayerFragment.
     var bookDetailsFragment: BookDetailsFragment? = null
     var audioPlayerFragment: PlayerFragment? = null
     var selectedBook: Book? = null
+    private lateinit var downloadArray : SparseArray<Int>
+    private lateinit var preferences: SharedPreferences
+    lateinit var downloadManager :DownloadManager
+    lateinit var request : DownloadManager.Request
 
     var bookListData: BookList? = null
     var currentProgress: Int =0
@@ -40,10 +48,14 @@ class MainActivity : AppCompatActivity(), BookSelectedInterface, PlayerFragment.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        downloadArray = SparseArray()
         bindService(Intent(this, PlayerService::class.java), serviceConnection, BIND_AUTO_CREATE)
         findViewById<Button>(R.id.buttonSecondActivity).setOnClickListener {
             openSomeActivityForResult()
         }
+
+
+
 
 
         if (savedInstanceState != null) {
@@ -61,6 +73,11 @@ class MainActivity : AppCompatActivity(), BookSelectedInterface, PlayerFragment.
         fm.beginTransaction()
             .replace(R.id.container3, PlayerFragment())
             .commit()
+
+
+
+
+
 
 
 
