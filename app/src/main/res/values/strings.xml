@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AudioBBPlayer</string>
+    <string name="search">search</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+    <string name="stop">stop</string>
+    <string name="now_playing">now playing</string>
+</resources>
