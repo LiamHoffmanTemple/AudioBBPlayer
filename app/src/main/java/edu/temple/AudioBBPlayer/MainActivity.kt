@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), BookSelectedInterface, PlayerFragment.
     private lateinit var preferences: SharedPreferences
     lateinit var downloadManager :DownloadManager
     lateinit var request : DownloadManager.Request
-
+    lateinit var bookProgress:PlayerService.BookProgress
     var bookListData: BookList? = null
     var currentProgress: Int =0
     var connect= false
@@ -53,8 +53,6 @@ class MainActivity : AppCompatActivity(), BookSelectedInterface, PlayerFragment.
         findViewById<Button>(R.id.buttonSecondActivity).setOnClickListener {
             openSomeActivityForResult()
         }
-
-
 
 
 
